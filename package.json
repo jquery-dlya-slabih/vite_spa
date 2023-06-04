@@ -1,13 +1,18 @@
 {
   "name": "vite_spa",
+  "description": "single page application based on vite, react, typescript",
+  "author": "Denis Krasnovskiy",
   "private": true,
+  "license": "MIT",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "npx prettier --write . & eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jquery-dlya-slabih/vite_spa"
+  },
+  "engines": {
+    "node": "18",
+    "npm": "9"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -27,5 +32,11 @@
     "typescript": "5.0.2",
     "vite": "4.3.9",
     "vite-plugin-pwa": "^0.16.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "npx prettier --write . & eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   }
 }
