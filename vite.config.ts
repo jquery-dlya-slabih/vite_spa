@@ -1,17 +1,64 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
 
-export default defineConfig(() => {
-  return {
-    server: {
-      port: 3000,
-      host: 'spa.vite.ru',
-      https: {
-        key: 'ssl/key.pem',
-        cert: 'ssl/cert.pem'
+const pwaSettings: Partial<VitePWAOptions> = {
+  devOptions: {
+    enabled: false
+  },
+  registerType: 'autoUpdate',
+  includeAssets: ['vite.svg', 'apple-touch-icon.png'],
+  manifest: {
+    name: 'vite spa',
+    short_name: 'VS',
+    description: 'single page application based on vite, react, typescript',
+    background_color: '#242424',
+    orientation: 'portrait',
+    theme_color: '#242424',
+    icons: [
+      {
+        src: 'pwa-192x192.png',
+        sizes: '192x192',
+        type: 'image/png'
       },
-      open: true
-    },
-    plugins: [react()]
+      {
+        src: 'pwa-512x512.png',
+        sizes: '512x512',
+        type: 'image/png'
+      },
+      {
+        src: 'pwa-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: 'pwa-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable'
+      }
+    ]
+  }
+};
+
+export default defineConfig(({ command }) => {
+  if (command === 'serve') {
+    return {
+      server: {
+        port: 3000,
+        host: 'spa.vite.ru',
+        https: {
+          key: 'ssl/key.pem',
+          cert: 'ssl/cert.pem'
+        },
+        open: true
+      },
+      plugins: [react(), VitePWA(pwaSettings)]
+    };
+  }
+
+  return {
+    plugins: [react(), VitePWA(pwaSettings)]
   };
 });
