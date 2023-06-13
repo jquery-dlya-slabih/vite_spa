@@ -13,3 +13,14 @@
 
 - npm ci
 - npm run dev
+
+### TO DO
+
+- browserslist
+- bundle analyze
+- enhance eslint
+- testing library
+- test build for legacy browsers
+- dotenv
+- enhance tsconfig
+- redux toolkit with jsonplaceholder api
