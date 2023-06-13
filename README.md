@@ -16,7 +16,6 @@
 
 ### TO DO
 
-- browserslist
 - bundle analyze
 - enhance eslint
 - testing library
@@ -24,3 +23,7 @@
 - dotenv
 - enhance tsconfig
 - redux toolkit with jsonplaceholder api
+
+### TO TEST
+
+- browserslist [https://github.com/vitejs/vite/tree/main/packages/plugin-legacy, https://github.com/marcofugaro/browserslist-to-esbuild]
