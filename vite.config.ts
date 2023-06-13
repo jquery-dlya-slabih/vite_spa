@@ -1,6 +1,9 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig, type ConfigEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
+import { visualizer } from 'rollup-plugin-visualizer';
+
+type Mode = 'production' | 'analyze';
 
 const pwaSettings: Partial<VitePWAOptions> = {
   devOptions: {
@@ -42,23 +45,33 @@ const pwaSettings: Partial<VitePWAOptions> = {
   }
 };
 
-export default defineConfig(({ command }) => {
-  if (command === 'serve') {
-    return {
-      server: {
-        port: 3000,
-        host: 'spa.vite.ru',
-        https: {
-          key: 'ssl/key.pem',
-          cert: 'ssl/cert.pem'
-        },
-        open: true
+function serve(): UserConfig {
+  return {
+    server: {
+      port: 3000,
+      host: 'spa.vite.ru',
+      https: {
+        key: 'ssl/key.pem',
+        cert: 'ssl/cert.pem'
       },
-      plugins: [react(), VitePWA(pwaSettings)]
+      open: true
+    },
+    plugins: [react(), VitePWA(pwaSettings)]
+  };
+}
+
+function build(mode: Mode): UserConfig {
+  if (mode === 'analyze') {
+    return {
+      plugins: [react(), VitePWA(pwaSettings), visualizer({ open: true })]
     };
   }
 
   return {
     plugins: [react(), VitePWA(pwaSettings)]
   };
+}
+
+export default defineConfig((params: ConfigEnv): UserConfig => {
+  return params.command === 'serve' ? serve() : build(params.mode as Mode);
 });

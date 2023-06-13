@@ -3,6 +3,7 @@ ssl
 dist
 dev-dist
 node_modules
+stats.html
 
 # Logs
 logs

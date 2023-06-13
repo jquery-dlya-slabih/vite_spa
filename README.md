@@ -14,12 +14,17 @@
 - npm ci
 - npm run dev
 
+### Commands
+
+- `npm run dev` - dev mode
+- `npm run build` - prod bundle
+- `npm run analyze` - prod bundle stats
+- `npm run preview` - vite preview
+
 ### TO DO
 
-- bundle analyze
 - enhance eslint
 - testing library
-- test build for legacy browsers
 - dotenv
 - enhance tsconfig
 - redux toolkit with jsonplaceholder api
