@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { PATH } from '@constants';
 import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './main.scss';
+import './main.module.scss';
 
 const Main = () => {
   const [count, setCount] = useState(0);
@@ -12,9 +13,10 @@ const Main = () => {
         <a
           href="https://vitejs.dev"
           target="_blank"
+          rel="noreferrer"
         >
           <img
-            src={viteLogo}
+            src="vite.svg"
             className="logo"
             alt="Vite logo"
           />
@@ -22,6 +24,7 @@ const Main = () => {
         <a
           href="https://react.dev"
           target="_blank"
+          rel="noreferrer"
         >
           <img
             src={reactLogo}
@@ -38,6 +41,9 @@ const Main = () => {
         </p>
       </div>
       <p className="read_the_docs">Click on the Vite and React logos to learn more</p>
+      <Link to={PATH.NEWS}>
+        <button>news</button>
+      </Link>
     </>
   );
 };

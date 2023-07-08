@@ -1,10 +1,5 @@
 import { Main, News, NotFound } from './pages';
-
-enum PATH {
-  MAIN = '/',
-  NEWS = '/news',
-  NOT_FOUND = '*'
-}
+import { PATH } from '@constants';
 
 export default [
   {

@@ -2,8 +2,11 @@ import { defineConfig, type UserConfig, type ConfigEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { VitePWA, type VitePWAOptions } from 'vite-plugin-pwa';
 import { visualizer } from 'rollup-plugin-visualizer';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 type Mode = 'production' | 'analyze';
+
+const PWA_512 = 'pwa-512x512.png';
 
 const pwaSettings: Partial<VitePWAOptions> = {
   devOptions: {
@@ -25,18 +28,18 @@ const pwaSettings: Partial<VitePWAOptions> = {
         type: 'image/png'
       },
       {
-        src: 'pwa-512x512.png',
+        src: PWA_512,
         sizes: '512x512',
         type: 'image/png'
       },
       {
-        src: 'pwa-512x512.png',
+        src: PWA_512,
         sizes: '512x512',
         type: 'image/png',
         purpose: 'any'
       },
       {
-        src: 'pwa-512x512.png',
+        src: PWA_512,
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable'
@@ -44,6 +47,8 @@ const pwaSettings: Partial<VitePWAOptions> = {
     ]
   }
 };
+
+const plugins = [react(), tsconfigPaths(), VitePWA(pwaSettings)];
 
 function serve(): UserConfig {
   return {
@@ -56,19 +61,19 @@ function serve(): UserConfig {
       },
       open: true
     },
-    plugins: [react(), VitePWA(pwaSettings)]
+    plugins
   };
 }
 
 function build(mode: Mode): UserConfig {
   if (mode === 'analyze') {
     return {
-      plugins: [react(), VitePWA(pwaSettings), visualizer({ open: true })]
+      plugins: [...plugins, visualizer({ open: true })]
     };
   }
 
   return {
-    plugins: [react(), VitePWA(pwaSettings)]
+    plugins
   };
 }
 

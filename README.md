@@ -20,13 +20,14 @@
 - `npm run build` - prod bundle
 - `npm run analyze` - prod bundle stats
 - `npm run preview` - vite preview
+- `npm run prettier` - prettier
+- `npm run eslint` - eslint
+- `npm run stylelint` - stylelint
+- `npm run test` - vitest
 
 ### TO DO
 
-- enhance eslint
-- testing library
 - dotenv
-- enhance tsconfig
 - redux toolkit with jsonplaceholder api
 
 ### TO TEST
